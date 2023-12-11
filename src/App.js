@@ -2,30 +2,47 @@
 import { useState } from 'react';
 import './App.css';
 import { LoanInputsBlock } from './LoanInputsBlock';
+import {OutputsBlock} from './OutputsBlock'
 
 function App() {
-  const [inputs, setInputs] = useState({
-    totalLoanAmount: null,
-    totalLoanLength: null,
-    annualInterestRate: null,
-    loanStartDate: null
-  })
+  // inputs is initialized to null, but will represent an object containing the user input information.
+  const [inputs, setInputs] = useState(null)
 
-  function handleGenerateClicked(loanAmount, loanLength, interestRate, startDate) {
+  // populate inputs with the given information when submit is clicked
+  function handleGenerateClicked(formData) {
+    formData.preventDefault()
+    let inputs = new FormData(formData.target)
+    let loanAmount = inputs.get("Total Loan Amount")
+    let loanLength = inputs.get("Length of Loan")
+    let interestRate = inputs.get("Interest Rate")
+    let startDate = inputs.get("Start Date")
+    console.log(startDate)
     setInputs({
       totalLoanAmount: loanAmount,
-      totalLoanLength: loanLength,
+      length: loanLength,
       annualInterestRate: interestRate,
       loanStartDate: startDate
     })
   }
+  // if inputs object is null, don't display any output information
+  let output;
+  if (inputs) {
+    output = <OutputsBlock loanInfo={inputs} />
+  } else {
+    output=""
+  }
+  console.log(output)
   
   return (
     <div className="App">
-      <header className="App-header">Mortgage Amortization Schedule Generator</header>
+      <h1 className="App-header">Mortgage Amortization Schedule Generator</h1>
+      <div className="inputs-block">
       <LoanInputsBlock onGenerateClicked={(formData) =>
-        handleGenerateClicked(formData.get("Total Loan Amount"), formData.get("Length of Loan"), formData.get("Interest Rate"), formData.get("Start Date"))} />
-      <OutputsBlock />
+          handleGenerateClicked(formData)} />
+      </div>
+      <div className="outputs-block">
+      {output}
+      </div>
     </div>
   );
 }
