@@ -1,9 +1,9 @@
 # Mortgage Amortization Calculator 
-# By Emily Allegretti
+## By Emily Allegretti
 
 ## Overview
 
-This is a simple front-end only mortgage payment schedule generator web app, built with React using Javascript. 
+This is a simple front-end only mortgage payment schedule generator, built with React using Javascript. 
 
 ## Getting Started with Create React App
 
