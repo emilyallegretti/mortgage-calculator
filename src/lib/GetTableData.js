@@ -4,7 +4,7 @@
 export function getTableData(input) {
     const rows = input.length // there will be as many rows in the table as months in the loan
     const cols = 7   // amount of data points being presented in each row, along with space for an id
-    let data = Array.from({ length: rows }, () => Array(cols).fill(undefined));
+    let data = Array.from({ length: rows }, () => Array(cols).fill(undefined)) // create an empty rows x cols array 
 
     // calculate M
     // M = total monthly payment
@@ -22,8 +22,7 @@ export function getTableData(input) {
         // set id, starting at 1
         data[i][0] = i+1
         // pay date
-        data[i][1] = payDate.substring(4)
-        console.log("data added to table:",data[i][1])
+        data[i][1] = payDate.substring(4)   // cut off the day of week from date string, not needed
         payDate = updatePayDate(payDate)
 
         // total monthly payment
@@ -56,21 +55,12 @@ function calcMonthlyPayment(input) {
         ((1 + r) ** n - 1)
     )
 }
-// adds 1 month to the current date string (formatted YYYY-MM-DD)
+// adds 1 month to the current date string 
 function updatePayDate(currDate) {
-    // get month part of string and parse into int
-    let month = parseInt(currDate.substring(5,7), 10)
-
-    let date = new Date(("%s00:00:00", currDate))   // get Date representation of current date
-    console.log("date:", date)
-    //date.setDate(date.getDate()+1)      // day lags behind when converting to object
-    console.log('year:',date.getFullYear())
+    let date = new Date(currDate)   // get Date representation of current date
     date.setMonth((date.getMonth() + 1) % 12)
     if (date.getMonth() == 0) {
-        console.log("month:", date.getMonth())
         date.setFullYear(date.getFullYear() + 1)
     }
-    console.log("newdate:",date)
-   // console.log("newDate chopped:",date.toISOString().substring(0, 10))
     return date.toDateString()
 }

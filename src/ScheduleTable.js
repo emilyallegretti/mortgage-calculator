@@ -1,7 +1,5 @@
-import { getTableData } from "./lib/GetTableData"
-
 // Component for amortization schedule table. 
-export function ScheduleTable({ input }) {
+export function ScheduleTable({ data }) {
     return (
         <table>
             <thead>
@@ -16,7 +14,7 @@ export function ScheduleTable({ input }) {
                 </tr>
             </thead>
             <tbody>
-                {getTableData(input).map(entry =>
+                {data.map(entry =>
                     <tr key={entry[0]}>
                         <td>{entry[0]}</td>
                         <td>{entry[1]}</td>

@@ -1,5 +1,5 @@
 # Mortgage Amortization Calculator 
-# By Emily Allegretti
+## By Emily Allegretti
 
 ## Overview
 

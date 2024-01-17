@@ -10,6 +10,7 @@ function App() {
 
   // populate inputs with the given information when submit is clicked
   function handleGenerateClicked(formData) {
+    // preventDefault prevents browser from reloading page; handle form data w/ javascript instead
     formData.preventDefault()
     let inputs = new FormData(formData.target)
     let loanAmount = inputs.get("Total Loan Amount")

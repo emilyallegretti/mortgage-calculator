@@ -1,7 +1,4 @@
-import { getTableData } from "./lib/GetTableData"
-
-export function LoanOverview({ input }) {
-    let data = getTableData(input)
+export function LoanOverview({ input, data }) {
     return (
         <>
             <h2>Payment Overview</h2>
